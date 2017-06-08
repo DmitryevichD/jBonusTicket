@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><appConfig>
+<jreport>
+<bonus_percent>71.42857</bonus_percent>
+<reportTitles>
+<titles name="mainTitle" value="ПОКУПАЙ ВЫГОДНО"/>
+<titles name="companyTitle" value="ЗАО'Мерком'"/>
+<titles name="saleTitle" value="Скидка:"/>
+<titles name="dateTicketTitle" value="Созд:"/>
+<titles name="dateCreated" value=""/>
+<titles name="dateTmpl" value="dd-MM-yyyy"/>
+<titles name="ltrTitle" value="Цена за 1кг(л): "/>
+</reportTitles>
+<price>
+<kop>к.</kop>
+<rubl>р.</rubl>
+</price>
+<document>
+<dateTmpl>dd-MM-yyyy</dateTmpl>
+</document>
+<formats name_lenght="40">
+<format name="6x4" source="reportForms/rep6x4.jrxml" target="reportForms/rep6x4.jasper"/>
+<format name="14x9" source="reportForms/rep14x9.jrxml" target="reportForms/rep14x9.jasper"/>
+    <format name="A4" source="reportForms/repA4.jrxml" target="reportForms/repA4.jasper"/>
+
+</formats>
+</jreport>
+<server>
+<url>jdbc:jtds:sybase://192.168.7.100:5000/PSTrade;user=sa;password=</url>
+</server>
+<tradinghouse>
+<typeDocs>
+<id name="Приходная ТТН от поставщика">6</id>
+<id name="Переоценка">99</id>
+<id name="Приходная ТТН с магазина">7</id>
+<id name="Приходная ТТН со склада">8</id>
+</typeDocs>
+</tradinghouse>
+<titles>
+<docTable>
+<columns>
+<column prefWidth="70" title="Выбор">selector</column>
+<column prefWidth="70" title="ИД">docId</column>
+<column prefWidth="100" title="Дата">docDate</column>
+<column prefWidth="100" title="Номер">docNumber</column>
+<column prefWidth="250" title="Поставищик">partnerName</column>
+<column prefWidth="250" title="Тип документа">docKindName</column>
+</columns>
+</docTable>
+<goodsTable>
+<columns>
+<column editable="true" prefWidth="70" title="Выбор" type="boolean">selector</column>
+<column editable="false" prefWidth="250" title="Название ТМЦ" type="String">name</column>
+<column editable="false" prefWidth="70" title="Ед. изм." type="String">packageName</column>
+<column editable="true" prefWidth="100" title="Розн. цена" type="float">originalPrice</column>
+<column editable="false" prefWidth="100" title="Акц. цена" type="float">bonusPrice</column>
+<column editable="true" prefWidth="100" title="Скидка %" type="float">bonusPercent</column>
+<column editable="true" prefWidth="120" title="Сумма скидки" type="float">bonusSum</column>
+<column editable="true" prefWidth="100" title="Печать шт." type="int">printCount</column>
+<column editable="false" prefWidth="100" title="Штрихкод" type="String">barcode</column>
+<column editable="false" prefWidth="150" title="Поставщик" type="String">partnerName</column>
+<column editable="false" prefWidth="150" title="Документ" type="String">numDoc</column>
+</columns>
+</goodsTable>
+</titles>
+<per_kg min_weight="0.050">
+<!--Группы товаров, для которых не требуется указывать цену за 1кг-->
+<always_hide>
+<groups>
+    <group name="Вина виноградные импортные">51</group>
+    <group name="Вина виноградные РБ">59</group>
+    <group name="Вина плодово-ягодные">60</group>
+    <group name="Шампанское импорт">386</group>
+    <group name="Шампанское РБ">390</group>
+    <group name="Бренди импорт">200</group>
+    <group name="Бренди РБ">201</group>
+    <group name="Водка импорт">191</group>
+    <group name="Водка РБ">192</group>
+    <group name="Коньяк импорт">193</group>
+    <group name="Коньяк РБ">194</group>
+    <group name="Прочие ЛВИ импорт">195</group>
+    <group name="Прочие ЛВИ РБ">196</group>
+    <group name="Слабоалкогольные напитки импорт">456</group>
+    <group name="Слабоалкогольные напитки РБ">457</group>
+    <group name="Табачные изделия импорт">438</group>
+    <group name="Табачные изделия РБ">439</group>
+</groups>
+</always_hide>
+<!--Группы товаров, для которых требуется указывать цену, даже если она меньше 50 грам-->
+<always_show>
+<groups>
+    <group name="Прочая продукция импорт">498</group>
+    <group name="Прочая продукция РБ">499</group>
+    <group name="Специи импорт">225</group>
+    <group name="Специи РБ">226</group>
+</groups>
+</always_show>
+</per_kg>
+</appConfig>
